@@ -11,7 +11,7 @@ SELECT s.title as 'TITLE', author_name as 'AUTHOR', c.name as 'CATEGORY', num_vo
 			SELECT song_id, count(song_id) as num_votes 
 			FROM votes GROUP BY song_id 
 		) v ON v.song_id=s.song_id
-	ORDER BY 'NUM_VOTES'
+	ORDER BY 'NUM_VOTES' DESC
 	LIMIT n;
 END; //
 
