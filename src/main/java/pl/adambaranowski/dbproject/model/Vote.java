@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Vote {
-    private int vote_id;
-    private int song_id;
-    private int user_id;
+    private Integer vote_id;
+    private Integer song_id;
+    private Integer user_id;
 }

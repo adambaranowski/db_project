@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class Author {
-    private int author_id;
-    private String name;
+    private Integer author_id;
+    private String author_name;
 }
