@@ -3,67 +3,58 @@ package pl.adambaranowski.dbproject.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import pl.adambaranowski.dbproject.model.Album;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.Query;
 import java.util.List;
 
 @Service
-@NamedNativeQuery(name = "addAlbumWithCategory", query = "INSERT INTO albums (album_name, category_id) VALUES ?, ?;")
-@NamedNativeQuery(name = "addAlbumWithoutCategory", query = "INSERT INTO albums (album_name) VALUES ?;")
-@NamedNativeQuery(name = "deleteAlbumById", query = "DELETE FROM albums WHERE album_id=?;")
-@NamedNativeQuery(name = "deleteAlbumByName", query = "DELETE FROM albums WHERE album_name=?;")
-@NamedNativeQuery(name = "getAlbumById", query = "SELECT FROM  albums WHERE album_id=? LIMIT 1;")
-@NamedNativeQuery(name = "getAlbumByName", query = "SELECT FROM albums WHERE album_name=? LIMIT 1;")
-@NamedNativeQuery(name = "getAllAlbums", query = "SELECT * FROM albums;")
 public class AlbumService {
+    private static final String ADD_ALBUM_WITH_CATEGORY = "INSERT INTO albums (album_name, category_id) VALUES (?, ?);";
+    private static final String ADD_ALBUM_WITHOUT_CATEGORY = "INSERT INTO albums (album_name) VALUE (?);";
+    private static final String DELETE_ALBUM_BY_ID = "DELETE FROM albums WHERE album_id=?;";
+    private static final String DELETE_ALBUM_BY_NAME = "DELETE FROM albums WHERE album_name=?;";
+    private static final String GET_ALBUM_BY_ID = "SELECT * FROM albums WHERE album_id=? LIMIT 1;";
+    private static final String GET_ALBUM_BY_NAME = "SELECT * FROM albums WHERE album_name=? LIMIT 1;";
+    private static final String GET_ALL_ALBUMS = "SELECT * FROM albums LIMIT 1;";
 
-    private EntityManager entityManager;
     private JdbcTemplate template;
+    private RowMapper rowMapper = BeanPropertyRowMapper.newInstance(Album.class);
 
     @Autowired
-    public AlbumService(EntityManager entityManager, JdbcTemplate template) {
-        this.entityManager = entityManager;
+    public AlbumService(JdbcTemplate template) {
         this.template = template;
     }
 
     public void addAlbumWithCategory(String album_name, int category_id){
-        template.update("INSERT INTO albums (album_name, category_id) VALUES (?, ?);", album_name, category_id);
+        template.update(ADD_ALBUM_WITH_CATEGORY, album_name, category_id);
     }
 
     public void addAlbumWithoutCategory(String album_name){
-        int update = template.update("INSERT INTO albums (album_name) VALUE (?);", album_name);
+        template.update(ADD_ALBUM_WITHOUT_CATEGORY, album_name);
     }
 
     public void deleteAlbumById(int album_id){
-        Query query = entityManager.createNativeQuery("deleteAlbumById");
-        query.setParameter(1, album_id);
-        query.executeUpdate();
+        template.update(DELETE_ALBUM_BY_ID, album_id);
     }
 
     public void deleteAlbumByName(String album_name){
-        Query query = entityManager.createNativeQuery("deleteAlbumByName");
-        query.setParameter(1, album_name);
-        query.executeUpdate();
+        template.update(DELETE_ALBUM_BY_NAME, album_name);
     }
 
     public Album getAlbumById(int album_id){
-        Album album = template.queryForObject("SELECT FROM  albums WHERE album_id=" + album_id + " LIMIT 1", Album.class);
-        return album;
+        List<Album> query = template.query(GET_ALBUM_BY_ID, rowMapper, album_id);
+        return query.get(0);
     }
 
     public Album getAlbumByName(String album_name){
-        var rowMapper = BeanPropertyRowMapper.newInstance(Album.class);
-        List<Album> query = template.query("SELECT * FROM albums WHERE album_name='" + album_name + "' LIMIT 1;", rowMapper);
+        List<Album> query = template.query(GET_ALBUM_BY_NAME, rowMapper, album_name);
         return query.get(0);
     }
 
     public List<Album> getAllAlbums(){
-        Query query = entityManager.createNativeQuery("getAllAlbums", Album.class);
-        List<Album> resultList = query.getResultList();
-        return resultList;
+        List<Album> query = template.query(GET_ALL_ALBUMS, rowMapper);
+        return query;
     }
 }

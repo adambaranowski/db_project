@@ -20,22 +20,25 @@ public class AlbumController {
     }
 
     @PostMapping
-    public void addAlbum(@RequestParam String album_name, @RequestParam(required = false) Integer category_id){
+    public ResponseEntity<Object> addAlbum(@RequestParam String album_name, @RequestParam(required = false) Integer category_id){
         if(category_id != null){
             albumService.addAlbumWithCategory(album_name, category_id);
         }else {
             albumService.addAlbumWithoutCategory(album_name);
         }
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/album_id")
-    public void deleteAlbumById(@RequestParam int album_id){
+    public ResponseEntity<Object> deleteAlbumById(@RequestParam int album_id){
         albumService.deleteAlbumById(album_id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/album_name")
-    public void deleteAlbumByName(@RequestParam String album_name){
+    public ResponseEntity<Object> deleteAlbumByName(@RequestParam String album_name){
         albumService.deleteAlbumByName(album_name);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/album_id")

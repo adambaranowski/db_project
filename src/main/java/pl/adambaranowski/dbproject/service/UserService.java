@@ -1,71 +1,58 @@
 package pl.adambaranowski.dbproject.service;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import pl.adambaranowski.dbproject.model.Author;
-import pl.adambaranowski.dbproject.model.Category;
-import pl.adambaranowski.dbproject.model.Song;
 import pl.adambaranowski.dbproject.model.User;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.Query;
 import java.util.List;
 
 @Service
-@NamedNativeQuery(name = "addUser", query = "INSERT INTO users (username) VALUES ?;")
-@NamedNativeQuery(name = "deleteUserById", query = "DELETE FROM users WHERE user_id=?;")
-@NamedNativeQuery(name = "deleteUserByUsername", query = "DELETE FROM users WHERE username=?;")
-@NamedNativeQuery(name = "getUserById", query = "SELECT FROM  users WHERE user_id=? LIMIT 1;")
-@NamedNativeQuery(name = "getUserByUsername", query = "SELECT FROM users WHERE username=? LIMIT 1;")
-@NamedNativeQuery(name = "getAllUsers", query = "SELECT * FROM users;")
 public class UserService {
 
-    private EntityManager entityManager;
+    private static final String ADD_USER = "INSERT INTO users (username) VALUE (?);";
+    private static final String DELETE_USER_BY_ID = "DELETE FROM users WHERE user_id=?;";
+    private static final String DELETE_USER_BY_USERNAME = "DELETE FROM users WHERE username=?;";
+    private static final String GET_USER_BY_ID = "SELECT * FROM  users WHERE user_id=? LIMIT 1;";
+    private static final String GET_USER_BY_USERNAME = "SELECT * FROM users WHERE username=? LIMIT 1;";
+    private static final String GET_ALL_USERS = "SELECT * FROM users;";
+
+    private JdbcTemplate template;
+    private RowMapper rowMapper = BeanPropertyRowMapper.newInstance(User.class);
 
     @Autowired
-    public UserService(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public UserService(JdbcTemplate template) {
+        this.template = template;
     }
 
     public void addUser(String username){
-        Query query = entityManager.createNativeQuery("addUser");
-        query.setParameter(1, username);
-        query.executeUpdate();
+        template.update(ADD_USER, username);
     }
 
     public void deleteUserById(int user_id){
-        Query query = entityManager.createNativeQuery("deleteUserById");
-        query.setParameter(1, user_id);
-        query.executeUpdate();
+        template.update(DELETE_USER_BY_ID, user_id);
     }
 
     public void deleteUserByUsername(String username){
-        Query query = entityManager.createNativeQuery("deleteUserByUsername");
-        query.setParameter(1, username);
-        query.executeUpdate();
+        template.update(DELETE_USER_BY_USERNAME, username);
     }
 
 
     public User getUserById(int user_id){
-        Query query = entityManager.createNativeQuery("getUserById", User.class);
-        query.setParameter(1, user_id);
-        List resultList = query.getResultList();
-        return (User) resultList.get(0);
+        List<User> query = template.query(GET_USER_BY_ID, rowMapper, user_id);
+        return query.get(0);
     }
 
     public User getUserByUsername(String username){
-        Query query = entityManager.createNativeQuery("getUserByUsername", User.class);
-        query.setParameter(1, username);
-        List resultList = query.getResultList();
-        return (User) resultList.get(0);
+        List<User> query = template.query(GET_USER_BY_USERNAME, rowMapper, username);
+        return query.get(0);
     }
 
     public List<User> getAllUsers(){
-        Query query = entityManager.createNativeQuery("getAllUsers", User.class);
-        List<User> resultList = query.getResultList();
-        return resultList;
+        List<User> query = template.query(GET_ALL_USERS, rowMapper);
+        return query;
     }
 }
