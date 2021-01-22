@@ -10,7 +10,7 @@ import pl.adambaranowski.dbproject.service.AuthorService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/author")
+@RequestMapping("/authors")
 public class AuthorController {
     private AuthorService authorService;
 
@@ -25,14 +25,14 @@ public class AuthorController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/author_id")
-    public ResponseEntity<Author> getAuthorById(@RequestParam Integer author_id){
+    @GetMapping("/author-id/{author_id}")
+    public ResponseEntity<Author> getAuthorById(@PathVariable Integer author_id){
         Author authorById = authorService.getAuthorById(author_id);
         return new ResponseEntity<>(authorById, HttpStatus.OK);
     }
 
-    @GetMapping("/author_name")
-    public ResponseEntity<Author> getAuthorByName(@RequestParam String author_name){
+    @GetMapping("/author-name/{author_name}")
+    public ResponseEntity<Author> getAuthorByName(@PathVariable String author_name){
         Author authorByName = authorService.getAuthorByName(author_name);
         return new ResponseEntity<>(authorByName, HttpStatus.OK);
     }
@@ -43,14 +43,14 @@ public class AuthorController {
         return new ResponseEntity<>(allAuthors, HttpStatus.OK);
     }
 
-    @DeleteMapping("/author_id")
-    public ResponseEntity<Object> deleteAuthorById(@RequestParam Integer author_id){
+    @DeleteMapping("/author-id/{author_id}")
+    public ResponseEntity<Object> deleteAuthorById(@PathVariable Integer author_id){
         authorService.deleteAuthorById(author_id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/author_name")
-    public ResponseEntity<Object> deleteAuthorByName(@RequestParam String author_name){
+    @DeleteMapping("/author-name/{author_name}")
+    public ResponseEntity<Object> deleteAuthorByName(@PathVariable String author_name){
         authorService.deleteAuthorByName(author_name);
         return new ResponseEntity<>(HttpStatus.OK);
     }

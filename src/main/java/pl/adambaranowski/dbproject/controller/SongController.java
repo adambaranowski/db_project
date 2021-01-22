@@ -10,7 +10,7 @@ import pl.adambaranowski.dbproject.service.SongService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/song")
+@RequestMapping("/songs")
 public class SongController {
 
     private SongService songService;
@@ -30,32 +30,32 @@ public class SongController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/song_id")
-    public ResponseEntity<Object> deleteSongById(@RequestParam Integer song_id){
+    @DeleteMapping("/song-id/{song_id}")
+    public ResponseEntity<Object> deleteSongById(@PathVariable Integer song_id){
         songService.deleteSongById(song_id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/title")
-    public ResponseEntity<Object> deleteSongByTitle(@RequestParam String title){
+    @DeleteMapping("/title/{title}")
+    public ResponseEntity<Object> deleteSongByTitle(@PathVariable String title){
         songService.deleteSongByTitle(title);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/author_id")
-    public ResponseEntity<Object> deleteSongByTitle(@RequestParam Integer author_id){
+    @DeleteMapping("/author-id/{author_id}")
+    public ResponseEntity<Object> deleteSongByTitle(@PathVariable Integer author_id){
         songService.deleteSongByAuthorId(author_id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/song_id")
-    public ResponseEntity<Song> getSongById(@RequestParam Integer song_id){
+    @GetMapping("/song-id/{song_id}")
+    public ResponseEntity<Song> getSongById(@PathVariable Integer song_id){
         Song songById = songService.getSongById(song_id);
         return new ResponseEntity<>(songById, HttpStatus.OK);
     }
 
-    @GetMapping("/title")
-    public ResponseEntity<Song> getSongByTitle(@RequestParam String title){
+    @GetMapping("/title/{title}")
+    public ResponseEntity<Song> getSongByTitle(@PathVariable String title){
         Song songByTitle = songService.getSongByTitle(title);
         return new ResponseEntity<>(songByTitle, HttpStatus.OK);
     }

@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class UserService {
 
-    private static final String ADD_USER = "INSERT INTO users (username) VALUE (?);";
+    private static final String ADD_USER = "INSERT INTO users (username, password_hash) VALUES (?, ?);";
     private static final String DELETE_USER_BY_ID = "DELETE FROM users WHERE user_id=?;";
     private static final String DELETE_USER_BY_USERNAME = "DELETE FROM users WHERE username=?;";
     private static final String GET_USER_BY_ID = "SELECT * FROM  users WHERE user_id=? LIMIT 1;";
@@ -29,7 +29,7 @@ public class UserService {
     }
 
     public void addUser(String username){
-        template.update(ADD_USER, username);
+        template.update(ADD_USER, username, "XD");
     }
 
     public void deleteUserById(int user_id){

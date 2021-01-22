@@ -11,7 +11,7 @@
     <groupId>pl.adambaranowski</groupId>
     <artifactId>dbproject</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>dbproject</name>
+    <name>DbProject</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -61,11 +61,13 @@
     </dependencies>
 
     <build>
+        <finalName>DbProject</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <executable>true</executable>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
@@ -76,5 +78,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

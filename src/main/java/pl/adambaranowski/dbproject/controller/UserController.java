@@ -10,7 +10,7 @@ import pl.adambaranowski.dbproject.service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     private UserService userService;
@@ -32,26 +32,26 @@ public class UserController {
         return new ResponseEntity<>(allUsers, HttpStatus.OK);
     }
 
-    @GetMapping("/user_id")
-    public ResponseEntity<User> getUserById(@RequestParam Integer user_id){
+    @GetMapping("/user-id/{user_id}")
+    public ResponseEntity<User> getUserById(@PathVariable Integer user_id){
         User userById = userService.getUserById(user_id);
         return new ResponseEntity<>(userById, HttpStatus.OK);
     }
 
-    @GetMapping("/username")
-    public ResponseEntity<User> getUserByUsername(@RequestParam String username){
+    @GetMapping("/username/{username}")
+    public ResponseEntity<User> getUserByUsername(@PathVariable String username){
         User userByUsername = userService.getUserByUsername(username);
         return new ResponseEntity<>(userByUsername, HttpStatus.OK);
     }
 
-    @DeleteMapping("/username")
-    public ResponseEntity deleteUserByUsername(@RequestParam String username){
+    @DeleteMapping("/username/{username}")
+    public ResponseEntity deleteUserByUsername(@PathVariable String username){
         userService.deleteUserByUsername(username);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @DeleteMapping("/user_id")
-    public ResponseEntity deleteUserByUsername(@RequestParam Integer user_id){
+    @DeleteMapping("/user-id/{user_id}")
+    public ResponseEntity deleteUserByUsername(@PathVariable Integer user_id){
         userService.deleteUserById(user_id);
         return new ResponseEntity(HttpStatus.OK);
     }

@@ -10,7 +10,7 @@ import pl.adambaranowski.dbproject.service.CategoryService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/categories")
 public class CategoryController {
     private CategoryService categoryService;
 
@@ -31,26 +31,26 @@ public class CategoryController {
         return new ResponseEntity<>(allCategories, HttpStatus.OK);
     }
 
-    @GetMapping("/category_name")
-    public ResponseEntity<Category> getCategoryByName(@RequestParam String category_name){
+    @GetMapping("/category-name/{category_name}")
+    public ResponseEntity<Category> getCategoryByName(@PathVariable String category_name){
         Category categoryByName = categoryService.getCategoryByName(category_name);
         return new ResponseEntity<>(categoryByName, HttpStatus.OK);
     }
 
-    @GetMapping("/category_id")
-    public ResponseEntity<Category> getCategoryById(@RequestParam Integer category_id){
+    @GetMapping("/category-id/{category_id}")
+    public ResponseEntity<Category> getCategoryById(@PathVariable Integer category_id){
         Category categoryById = categoryService.getCategoryById(category_id);
         return new ResponseEntity<>(categoryById, HttpStatus.OK);
     }
 
-    @DeleteMapping("/category_name")
-    public ResponseEntity<Object> deleteCategoryByName(@RequestParam String category_name){
+    @DeleteMapping("/category-name/{category_name}")
+    public ResponseEntity<Object> deleteCategoryByName(@PathVariable String category_name){
         categoryService.deleteCategoryByName(category_name);
         return  new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/category_id")
-    public ResponseEntity<Object> deleteCategoryById(@RequestParam Integer category_id){
+    @DeleteMapping("/category-id/{category_id}")
+    public ResponseEntity<Object> deleteCategoryById(@PathVariable Integer category_id){
         categoryService.deleteCategoryById(category_id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
