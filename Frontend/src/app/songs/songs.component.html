@@ -14,12 +14,16 @@
       </td>
       <td>
           <form>
-              <datalist id="albums">
-                <option *ngFor="let e of songs" value="{{ e.album_name }}"></option> <!--Tutaj trzeba podać wszystkie istniejące albumy-->
+              <datalist id="albums" *ngFor="let e of songs">
+                <option  value="{{ e.album_name }}"></option> <!--Tutaj trzeba podać wszystkie istniejące albumy-->
               </datalist>
           </form>
       </td>
-      <td style="background-color: black;"></td>
+      <td>
+        <form>
+          <input type="text" id="author" placeholder="Author name">
+        </form>
+      </td>
       <td>
         <form>
           <input type="text" id="username" placeholder="Username">
@@ -39,6 +43,6 @@
     <td>{{ e.album_name }}</td>
     <td>{{ e.author }}</td>
     <td>{{ e.username }}</td> <!--Tutaj trzeba podać odpowiadając song_id-->
-    <td>{{ e.id }}</td>
+    <td>{{ e.song_id }}</td>
   </tr>    
 </table>
