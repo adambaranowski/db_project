@@ -1,0 +1,14 @@
+<table id="t01">
+    <tr>
+      <th>Album name</th>
+      <th>Author</th>
+      <th>Album ID</th>
+      <th>Points</th>
+    </tr>
+    <tr *ngFor="let e of albumspop">
+      <td>{{ e.album_name }}</td>
+      <td>{{ e.author }}</td> 
+      <td>{{ e.id }}</td> 
+      <td>{{ e.points }}</td> 
+    </tr>    
+</table>

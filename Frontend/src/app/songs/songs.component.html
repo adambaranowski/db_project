@@ -1,0 +1,44 @@
+<table id="t01">
+    <tr>
+      <th>Song name</th>
+      <th>Album name</th>
+      <th>Author</th>
+      <th>Username</th>
+      <th>Song ID</th>
+    </tr>
+    <tr>
+      <td>
+        <form>
+          <input type="text" id="song_name" placeholder="Title">
+        </form>
+      </td>
+      <td>
+          <form>
+              <datalist id="albums">
+                <option *ngFor="let e of songs" value="{{ e.album_name }}"></option> <!--Tutaj trzeba podać wszystkie istniejące albumy-->
+              </datalist>
+          </form>
+      </td>
+      <td style="background-color: black;"></td>
+      <td>
+        <form>
+          <input type="text" id="username" placeholder="Username">
+        </form>
+      </td> <!--Tutaj użytkownik musi podać swój username-->
+      <td><button type="button">Add</button></td>
+  </tr>
+  <tr>
+      <td style="background-color: black;"></td>
+      <td style="background-color: black;"></td>
+      <td style="background-color: black;"></td>
+      <td style="background-color: black;"></td>
+      <td style="background-color: black;"></td>
+  </tr> 
+  <tr *ngFor="let e of songs">
+    <td>{{ e.song }}</td> <!--Tutaj trzeba podać odpowiadający username-->
+    <td>{{ e.album_name }}</td>
+    <td>{{ e.author }}</td>
+    <td>{{ e.username }}</td> <!--Tutaj trzeba podać odpowiadając song_id-->
+    <td>{{ e.id }}</td>
+  </tr>    
+</table>

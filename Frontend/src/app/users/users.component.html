@@ -1,0 +1,12 @@
+<table id="t01">
+    <tr>
+      <th>Username</th>
+      <th>Favourite Song</th>
+      <th>User ID</th>
+    </tr>
+    <tr *ngFor="let e of users">
+      <td>{{ e.username }}</td>
+      <td>{{ e.song }}</td>
+      <td>{{ e.user_id }}</td> 
+    </tr>      
+</table>

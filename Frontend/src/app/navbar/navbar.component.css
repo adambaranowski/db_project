@@ -1,0 +1,15 @@
+header  {
+    background-color: #022400;
+    padding: 15px;
+}
+
+a   {
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    font-family: 'Redressed', cursive;
+}
+
+a:hover {
+    background-color: #001b04;
+}

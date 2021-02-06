@@ -1,0 +1,16 @@
+<table id="t01">
+    <tr>
+      <th>Song name</th>
+      <th>Album name</th>
+      <th>Author</th>
+      <th>Song ID</th>
+      <th>Points</th>
+    </tr>
+    <tr *ngFor="let e of leaderboard">
+      <td>{{ e.song }}</td>
+      <td>{{ e.album_name }}</td>
+      <td>{{ e.author }}</td> 
+      <td>{{ e.id }}</td> 
+      <td>{{ e.points }}</td> 
+    </tr>    
+</table>
