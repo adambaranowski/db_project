@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/votes")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class VoteController {
 
     private VoteService voteService;

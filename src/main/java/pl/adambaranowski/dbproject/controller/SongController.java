@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/songs")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SongController {
 
     private SongService songService;
