@@ -17,7 +17,7 @@ public class AlbumService {
     private static final String DELETE_ALBUM_BY_NAME = "DELETE FROM albums WHERE album_name=?;";
     private static final String GET_ALBUM_BY_ID = "SELECT * FROM albums WHERE album_id=? LIMIT 1;";
     private static final String GET_ALBUM_BY_NAME = "SELECT * FROM albums WHERE album_name=? LIMIT 1;";
-    private static final String GET_ALL_ALBUMS = "SELECT * FROM albums LIMIT 1;";
+    private static final String GET_ALL_ALBUMS = "SELECT * FROM albums;";
 
     private JdbcTemplate template;
     private RowMapper rowMapper = BeanPropertyRowMapper.newInstance(Album.class);
