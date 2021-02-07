@@ -5,11 +5,13 @@
     </tr>
     <tr>
       <td>
-        <form>
+        <!-- <form [formGroup]="createAlbumForm"> -->
+          <!-- <input type="text" id="album_name" formControlName="name" placeholder="Album name"> -->
           <input type="text" id="album_name" [(ngModel)]="album_name" placeholder="Album name">
-        </form>
+          <button type="submit" (click)="createAlbum()">Add</button>
+        <!-- </form> -->
       </td>
-      <td><button (click)="postData()" type="button">Add</button></td>
+      <td></td>
     </tr>
     <tr>
       <td style="background-color: black;"></td>
@@ -17,7 +19,6 @@
     </tr> 
     <tr *ngFor="let e of albums">
       <td>{{ e.album_name }}</td>
-      <td>{{ e.author }}</td>
       <td>{{ e.album_id }}</td> 
     </tr>    
 </table>
