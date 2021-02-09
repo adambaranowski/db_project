@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SongsComponent {
 
-  title : string = "-";
+  title : string = "";
   album_name : string = "-";
   author : string = "-";
   username : string = "-";

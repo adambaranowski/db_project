@@ -15,10 +15,10 @@
       <th>Vote</th>
     </tr>
     <tr *ngFor="let e of vote">
-      <td>{{ e.song }}</td>
-      <td>{{ e.album_name }}</td>
-      <td>{{ e.author }}</td> 
-      <td>{{ e.id }}</td> 
+      <td>{{ e.title }}</td>
+      <td>{{ e.album_id }}</td>
+      <td>{{ e.author_id }}</td> 
+      <td>{{ e.song_id }}</td> 
       <td>{{ e.points }}</td>    
       <td><button type="button">Vote</button></td>
     </tr>    
