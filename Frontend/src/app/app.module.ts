@@ -37,7 +37,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [AlbumsService, AlbumspopService, LeaderboardService, SongsService, UsersService, VoteService],
   bootstrap: [AppComponent]

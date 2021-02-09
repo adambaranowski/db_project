@@ -1,30 +1,23 @@
 <table id="t01">
     <tr>
       <th scope="col">Album name</th>
-      <th scope="col">Author</th>
       <th scope="col">Album ID</th>
     </tr>
     <tr>
       <td>
-        <form>
+        <!-- <form [formGroup]="createAlbumForm"> -->
+          <!-- <input type="text" id="album_name" formControlName="name" placeholder="Album name"> -->
           <input type="text" id="album_name" [(ngModel)]="album_name" placeholder="Album name">
-        </form>
+        <!-- </form> -->
       </td>
-      <td>
-        <form>
-          <input type="text" id="author" [(ngModel)]="author" placeholder="Author name">
-        </form>
-      </td>
-      <td><button (click)="postData()" type="button">Add</button></td>
+      <td><button type="submit" (click)="createAlbum()">Add</button></td>
     </tr>
     <tr>
-      <td style="background-color: black;"></td>
       <td style="background-color: black;"></td>
       <td style="background-color: black;"></td>
     </tr> 
     <tr *ngFor="let e of albums">
       <td>{{ e.album_name }}</td>
-      <td>{{ e.author }}</td>
       <td>{{ e.album_id }}</td> 
     </tr>    
 </table>

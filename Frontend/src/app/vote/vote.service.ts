@@ -6,7 +6,7 @@ import { IVote } from './vote';
 @Injectable()
 export class VoteService{
 
-    private url : string = "/assets/data/test.json";
+    private url : string = "http://localhost:7400/songs/all";
     constructor(private http: HttpClient) {}
 
     getVote(): Observable<IVote[]> {

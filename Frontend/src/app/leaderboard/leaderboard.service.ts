@@ -6,7 +6,7 @@ import { ILeaderboard } from './leaderboard';
 @Injectable()
 export class LeaderboardService{
 
-    private url : string = "http://localhost:7400/leaderboard";
+    private url : string = "http://localhost:7400/leaderboard/all";
     constructor(private http: HttpClient) {}
 
     getLeaderboard(): Observable<ILeaderboard[]> {

@@ -9,8 +9,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SongsComponent {
 
+  title : string = "";
   album_name : string = "-";
   author : string = "-";
+  username : string = "-";
   id : number = 0;
 
   public songs = [] as any;
@@ -21,13 +23,17 @@ export class SongsComponent {
     this.songsService.getSongs().subscribe(data => this.songs = data);
   }
 
-  postData(){
+  createSong(){
+    console.log(this.title);
+    let url = `http://localhost:7400/songs?title=${this.title}`;
 
-    let url = "http://localhost:7400/songs";
-
-    this.http.post(url, {params: {song_name : "lala", album_name : "cipa", author : "krawczyk", song_id : 1}}).toPromise().then((data : any) => {
-      console.log(data)
-      console.log(JSON.stringify(data.json.album_name, data.json.autor, data.json.id))
+    this.http.post(url, {title : this.title, author : this.author, username : this.username}).toPromise().then((data : any) => {
+      console.log(data);
+      window.location.reload();
     })
+  }
+
+  postData(){
+    console.log('asda');
   }
 }
