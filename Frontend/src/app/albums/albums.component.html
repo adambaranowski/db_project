@@ -8,10 +8,9 @@
         <!-- <form [formGroup]="createAlbumForm"> -->
           <!-- <input type="text" id="album_name" formControlName="name" placeholder="Album name"> -->
           <input type="text" id="album_name" [(ngModel)]="album_name" placeholder="Album name">
-          <button type="submit" (click)="createAlbum()">Add</button>
         <!-- </form> -->
       </td>
-      <td></td>
+      <td><button type="submit" (click)="createAlbum()">Add</button></td>
     </tr>
     <tr>
       <td style="background-color: black;"></td>

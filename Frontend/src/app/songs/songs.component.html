@@ -9,7 +9,7 @@
     <tr>
       <td>
         <form>
-          <input type="text" id="song_name" placeholder="Title">
+          <input type="text" id="title" [(ngModel)]="title" placeholder="Title">
         </form>
       </td>
       <td>
@@ -21,15 +21,15 @@
       </td>
       <td>
         <form>
-          <input type="text" id="author" placeholder="Author name">
+          <input type="text" id="author" [(ngModel)]="author" placeholder="Author name">
         </form>
       </td>
       <td>
         <form>
-          <input type="text" id="username" placeholder="Username">
+          <input type="text" id="username" [(ngModel)]="username" placeholder="Username">
         </form>
       </td> <!--Tutaj użytkownik musi podać swój username-->
-      <td><button type="button">Add</button></td>
+      <td><button type="button" (click)="createSong()">Add</button></td>
   </tr>
   <tr>
       <td style="background-color: black;"></td>

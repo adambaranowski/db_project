@@ -12,7 +12,6 @@ export class AlbumsComponent {
 
   album_name : string = "";
   author : string = "-";
-  id : number = 0;
 
   // createAlbumForm = this.formBuilder.group({
   // // createAlbumForm = new FormGroup({
