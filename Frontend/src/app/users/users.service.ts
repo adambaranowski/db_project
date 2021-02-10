@@ -6,7 +6,7 @@ import { IUsers } from './users';
 @Injectable()
 export class UsersService{
 
-    private url : string = "http://localhost:7400/users/all";
+    private url : string = "https://g04.labagh.pl/users/all";
     constructor(private http: HttpClient) {}
 
     getUsers(): Observable<IUsers[]> {

@@ -25,7 +25,7 @@ export class AlbumsComponent {
 
   createAlbum() {
     console.log(this.album_name);
-    let url = `http://localhost:7400/albums?album_name=${this.album_name}`;
+    let url = `https://g04.labagh.pl/albums?album_name=${this.album_name}`;
 
     this.http.post(url, {album_name : this.album_name}).toPromise().then((data : any) => {
       console.log(data);

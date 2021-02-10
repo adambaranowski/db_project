@@ -6,7 +6,7 @@ import { IAlbumspop } from './albumspop';
 @Injectable()
 export class AlbumspopService{
 
-    private url : string = "http://localhost:7400/albums/all";
+    private url : string = "https://g04.labagh.pl/albums/all";
     constructor(private http: HttpClient) {}
 
     getAlbumspop(): Observable<IAlbumspop[]> {
