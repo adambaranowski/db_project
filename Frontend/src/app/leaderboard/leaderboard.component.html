@@ -7,10 +7,10 @@
       <th>Points</th>
     </tr>
     <tr *ngFor="let e of leaderboard">
-      <td>{{ e.song }}</td>
-      <td>{{ e.album_name }}</td>
-      <td>{{ e.author }}</td> 
-      <td>{{ e.id }}</td> 
-      <td>{{ e.points }}</td> 
+      <td>{{ e.title }}</td>
+      <td>{{ e.album_id }}</td>
+      <td>{{ e.author_id }}</td> 
+      <td>{{ e.song_id }}</td> 
+      <td>{{ e.number_of_votes }}</td> 
     </tr>    
 </table>

@@ -6,7 +6,7 @@ import { ISongs } from './songs';
 @Injectable()
 export class SongsService{
 
-    private url : string = "http://localhost:7400/songs/all";
+    private url : string = "https://g04.labagh.pl/songs/all";
     constructor(private http: HttpClient) {}
 
     getSongs(): Observable<ISongs[]> {

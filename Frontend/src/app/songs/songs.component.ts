@@ -25,7 +25,7 @@ export class SongsComponent {
 
   createSong(){
     console.log(this.title);
-    let url = `http://localhost:7400/songs?title=${this.title}`;
+    let url = `https://g04.labagh.pl/songs?title=${this.title}`;
 
     this.http.post(url, {title : this.title, author : this.author, username : this.username}).toPromise().then((data : any) => {
       console.log(data);
