@@ -18,10 +18,10 @@ public class SongService {
     private static final String DELETE_SONG_BY_ID = "DELETE FROM songs WHERE song_id=?;";
     private static final String DELETE_SONG_BY_TITLE = "DELETE FROM songs WHERE title=?;";
     private static final String DELETE_SONG_BY_AUTHOR_ID = "DELETE FROM songs WHERE author_id=?;";
-    private static final String GET_SONG_BY_ID = "SELECT * FROM  songs WHERE song_id=? LIMIT 1;";
-    private static final String GET_SONG_BY_TITLE = "SELECT * FROM songs WHERE title=? LIMIT 1;";
-    private static final String GET_ALL_SONG = "SELECT * FROM songs;";
-    private static final String GET_SONGS_SORTED = "SELECT s.song_id, s.title, s.author_id, s.length_sec, s.is_single, s.album_id FROM songs s, votes v WHERE s.song_id=v.song_id GROUP BY s.song_id ORDER BY Count(s.song_id) DESC;";
+    private static final String GET_SONG_BY_ID = "SELECT s.song_id, Count(s.song_id) as number_of_votes, s.title, s.author_id, s.length_sec, s.is_single, s.album_id FROM songs s, votes v WHERE s.song_id=v.song_id AND s.song_id=? GROUP BY s.song_id ORDER BY Count(s.song_id) DESC LIMIT 1;";
+    private static final String GET_SONG_BY_TITLE = "SELECT s.song_id, Count(s.song_id) as number_of_votes, s.title, s.author_id, s.length_sec, s.is_single, s.album_id FROM songs s, votes v WHERE s.song_id=v.song_id AND s.title=? GROUP BY s.song_id ORDER BY Count(s.song_id) DESC LIMIT 1;";
+    private static final String GET_ALL_SONG = "SELECT s.song_id, Count(s.song_id) as number_of_votes, s.title, s.author_id, s.length_sec, s.is_single, s.album_id FROM songs s, votes v WHERE s.song_id=v.song_id GROUP BY s.song_id ORDER BY Count(s.song_id);";
+    private static final String GET_SONGS_SORTED = "SELECT s.song_id, Count(s.song_id) as number_of_votes, s.title, s.author_id, s.length_sec, s.is_single, s.album_id FROM songs s, votes v WHERE s.song_id=v.song_id GROUP BY s.song_id ORDER BY Count(s.song_id) DESC;";
 
     private JdbcTemplate template;
     private RowMapper rowMapper = BeanPropertyRowMapper.newInstance(Song.class);
