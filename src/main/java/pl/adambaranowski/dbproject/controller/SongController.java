@@ -66,4 +66,10 @@ public class SongController {
         List<Song> allSongs = songService.getAllSongs();
         return new ResponseEntity<>(allSongs, HttpStatus.OK);
     }
+
+    @GetMapping("/all/sorted")
+    public ResponseEntity<List<Song>> getAllSongsSorted(){
+        List<Song> allSongs = songService.getSongsSorted();
+        return new ResponseEntity<>(allSongs, HttpStatus.OK);
+    }
 }
