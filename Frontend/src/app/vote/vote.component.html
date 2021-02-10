@@ -1,17 +1,20 @@
-<p style="text-align: center">Switch to see only songs for which you didn't vote yet: &nbsp;&nbsp;&nbsp;
+<p style="text-align: center; color: white;">Switch to see only songs for which you didn't vote yet: &nbsp;&nbsp;&nbsp;
   <label class="switch">
     <input type="checkbox">
     <span class="slider"></span>
   </label>
 </p>
-
+<p style="text-align: center; color: white;">
+  To vote, please provide your username: 
+  <input type="text" id="username" [(ngModel)]="username" placeholder="Username">
+</p>
 <table id="t01">
     <tr>
       <th>Song name</th>
       <th>Album name</th>
       <th>Author</th>
       <th>Song ID</th>
-      <th>Points</th>
+      <th>Number of Votes</th>
       <th>Vote</th>
     </tr>
     <tr *ngFor="let e of vote">
@@ -19,7 +22,7 @@
       <td>{{ e.album_id }}</td>
       <td>{{ e.author_id }}</td> 
       <td>{{ e.song_id }}</td> 
-      <td>{{ e.points }}</td>    
-      <td><button type="button">Vote</button></td>
+      <td>{{ e.number_of_votes }}</td>    
+      <td><button type="button" (click)="triggerVote()">Vote</button></td>
     </tr>    
 </table>

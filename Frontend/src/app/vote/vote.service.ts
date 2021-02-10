@@ -9,6 +9,8 @@ export class VoteService{
     private url : string = "https://g04.labagh.pl/songs/all";
     constructor(private http: HttpClient) {}
 
+    username: string = '';
+
     getVote(): Observable<IVote[]> {
         return this.http.get<IVote[]>(this.url);
     }
